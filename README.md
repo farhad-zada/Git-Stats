@@ -1,50 +1,57 @@
 # Git Contribution Tracker
 
 ## Overview
-`git_stats.sh` is a Bash script designed to calculate the total number of lines added by a specified author across all Git repositories in a given directory, starting from a specified date. It's an excellent tool for developers to track their contributions or for team leads to monitor the progress of specific team members.
+`git_stats` is a command-line tool for calculating the total number of lines added by a specified author across all Git repositories within a specified directory and time range. It's ideal for developers looking to track their contributions or team leads monitoring team member progress.
 
 ## Prerequisites
-- Bash shell (typically available on Linux and macOS)
+- Bash shell
 - Git
-- `gawk` (GNU awk)
+- `awk` (GNU awk)
 
 ## Installation
-1. Clone this repository or download `git_stats.sh` directly.
-2. Make the script executable:
+1. Clone or download the `git_stats.sh` script.
+2. Move the script to a directory in your PATH, for example, `~/bin`:
    ```bash
-   chmod +x git_stats.sh
+   mkdir -p ~/bin
+   mv /path/to/git_stats.sh ~/bin/git_stats
+   chmod +x ~/bin/git_stats
+   ```
+3. Ensure `~/bin` is in your PATH. Add this line to your `~/.bashrc`, `~/.bash_profile`, or `~/.zshrc`:
+   ```bash
+   export PATH="$HOME/bin:$PATH"
+   ```
+4. Reload your profile (or restart your terminal):
+   ```bash
+   source ~/.bashrc  # Or the appropriate file you edited
    ```
 
 ## Usage
-Run the script with the following command, specifying the search directory, the start date for tracking contributions, and the author's name using flags:
+Run the command with the following syntax, specifying the search directory, start date, end date, and author's name using flags:
 
 ```bash
-./git_stats.sh -d [search-directory] -s [start-date] -a [author-name]
+git_stats -d [search-directory] -s [start-date] -e [end-date] -a [author-name]
 ```
 
-- `-d [search-directory]`: (Optional) The directory where the script will search for Git repositories. Defaults to the current directory if not provided.
-- `-s [start-date]`: (Optional) The start date for tracking contributions in `YYYY-MM-DD` format. Defaults to "2024-01-01" if not provided.
-- `-a [author-name]`: (Optional) The author name to track contributions. If not provided, the script will track contributions for all authors.
+- `-d [search-directory]`: (Optional) Directory to search for Git repositories. Defaults to the current directory.
+- `-s [start-date]`: (Optional) Start date for tracking contributions in `YYYY-MM-DD` format. Defaults to "2024-01-01".
+- `-e [end-date]`: (Optional) End date for tracking contributions in `YYYY-MM-DD` format. If not provided, tracks until the current date.
+- `-a [author-name]`: (Optional) Author name to track contributions. Tracks all authors if not provided.
 
 ### Example
-To track contributions by 'JohnDoe' in the `/path/to/directory` directory since January 1, 2022:
+To track contributions by 'JaneDoe' in `/path/to/directory` from January 1, 2022, to December 31, 2022:
 
 ```bash
-./git_stats.sh -d "/path/to/directory" -s "2022-01-01" -a "JohnDoe"
+git_stats -d "/path/to/directory" -s "2022-01-01" -e "2022-12-31" -a "JaneDoe"
 ```
 
-If you run the script without specifying any options, it will use the default values and track contributions for all authors in the current directory starting from January 1, 2024.
-
 ## Output
-The script outputs the number of lines added in each found Git repository and the total lines added across all repositories by the specified author since the specified start date.
+The command outputs the number of lines added in each found repository and the total lines added across all repositories by the specified author within the given time range.
 
 ## Customization
-The script is easily customizable. You can change the default search directory, start date, and author name directly in the script.
+You can change the default values for search directory, start date, end date, and author name directly in the script.
 
 ## License
 Use it however you want
 
 ## Contributing
-For contributions contact farhad.szd@gmail.com
-
-
+For contributions please contact farhad.szd@gmail.com
