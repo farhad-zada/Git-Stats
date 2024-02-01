@@ -1,7 +1,17 @@
 #!/bin/bash
 
-SEARCH_DIR="/Users/farhadzada/nebula/"
-START_DATE=${1:-"2024-01-01"} # Default to "2024-01-01" if no argument is provided
+# Default values
+SEARCH_DIR=$(pwd)
+START_DATE="2024-01-01"
+
+# Parse named parameters
+while getopts d:s: flag
+do
+    case "${flag}" in
+        d) SEARCH_DIR=${OPTARG};;
+        s) START_DATE=${OPTARG};;
+    esac
+done
 
 total_add=0
 
