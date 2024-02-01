@@ -1,7 +1,7 @@
 # Git Contribution Tracker
 
 ## Overview
-This script (`git_stats.sh`) calculates the total number of lines added by a specific author across all Git repositories in a specified directory, starting from a given date. It's ideal for tracking contributions over a certain period.
+`git_stats.sh` is a Bash script designed to calculate the total number of lines added by a specified author across all Git repositories in a given directory, starting from a specified date. It's an excellent tool for developers to track their contributions or for team leads to monitor the progress of specific team members.
 
 ## Prerequisites
 - Bash shell (typically available on Linux and macOS)
@@ -16,32 +16,35 @@ This script (`git_stats.sh`) calculates the total number of lines added by a spe
    ```
 
 ## Usage
-Run the script with the following command, specifying the search directory and the start date for tracking contributions:
+Run the script with the following command, specifying the search directory, the start date for tracking contributions, and the author's name using flags:
 
 ```bash
-./git_stats.sh [search-directory] [start-date]
+./git_stats.sh -d [search-directory] -s [start-date] -a [author-name]
 ```
 
-- `[search-directory]`: (Optional) The directory where the script will search for Git repositories. Defaults to the current directory if not provided.
-- `[start-date]`: (Optional) The start date for tracking contributions in `YYYY-MM-DD` format. Defaults to "2024-01-01" if not provided.
+- `-d [search-directory]`: (Optional) The directory where the script will search for Git repositories. Defaults to the current directory if not provided.
+- `-s [start-date]`: (Optional) The start date for tracking contributions in `YYYY-MM-DD` format. Defaults to "2024-01-01" if not provided.
+- `-a [author-name]`: (Optional) The author name to track contributions. If not provided, the script will track contributions for all authors.
 
 ### Example
-To track contributions in the `/path/to/directory` since January 1, 2022:
+To track contributions by 'JohnDoe' in the `/path/to/directory` directory since January 1, 2022:
 
 ```bash
-./git_stats.sh "/path/to/directory" "2022-01-01"
+./git_stats.sh -d "/path/to/directory" -s "2022-01-01" -a "JohnDoe"
 ```
 
-If you run the script without specifying arguments, it will search in the current directory and use the default start date.
+If you run the script without specifying any options, it will use the default values and track contributions for all authors in the current directory starting from January 1, 2024.
 
 ## Output
-The script outputs the number of lines added in each found Git repository and the total lines added across all repositories since the specified start date.
+The script outputs the number of lines added in each found Git repository and the total lines added across all repositories by the specified author since the specified start date.
 
 ## Customization
-- The script automatically tracks contributions from an author named "Farhad." Modify the `--author` flag value in the script to track a different author.
+The script is easily customizable. You can change the default search directory, start date, and author name directly in the script.
 
 ## License
 Use it however you want
 
 ## Contributing
 For contributions contact farhad.szd@gmail.com
+
+
